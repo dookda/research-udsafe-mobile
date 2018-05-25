@@ -1,17 +1,57 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+<ion-header class="kanit">
+
+  <ion-navbar [class.show-background]="showToolbar">
+    <ion-title [hidden]="!showToolbar">รายงานสถานการณ์</ion-title>
   </ion-navbar>
+
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+<ion-content class="content kanit" (ionScroll)="onScroll($event)" [class.transition]="transition" [style.background-size]="headerImgSize"
+  [style.background-image]="'url('+ headerImgUrl+ ')'">
+
+  <div class="user-info">
+    <img src="./assets/h.jpg" alt="">
+    <h4>รายงาน</h4>
+    <p>รายงานสถานการณ์ จากเครือข่ายเพื่อนเตือนภัย</p>
+  </div>
+
+  <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher> -->
+
+
+  <div class="articles">
+
+    <ion-list>
+      <button ion-item *ngFor="let r of reports" (click)="viewReportDetail(r)">
+        <ion-thumbnail item-left>
+          <img [src]="r.photo" *ngIf="r.photo">
+          <img src="./assets/imgs/no-image.png" *ngIf="!r.photo">
+        </ion-thumbnail>
+        <h1>{{ r.pname }}</h1>
+        <p ion-text color="primary" item-right *ngIf="r.pdesc">{{ r.pdate }}</p>
+        <p ion-text *ngIf="r.pdate">{{ r.pdesc }}</p>
+        <p ion-text *ngIf="r.pdate">lat: {{ r.lat | number}} lon: {{ r.lon | number }}</p>
+
+        <!-- <p ion-text color="danger" *ngIf="!r.desc">เต็มแล้ว</p> -->
+      </button>
+    </ion-list>
+
+    <!-- <div class="article-item" *ngFor=" let r of reports">
+      <ion-thumbnail item-left>
+        <img [src]="r.photo" *ngIf="r.photo">
+        <img src="./assets/imgs/no-image.png" *ngIf="!r.photo">
+      </ion-thumbnail>
+      <div class="placeholders">
+        <p ion-text item-right>{{ r.pname }}</p>
+        <p ion-text item-right>{{ r.pdesc }}</p>
+
+        <p ion-text item-right>lat: {{r.lat}} lon: {{r.lon}}</p>
+        <p ion-text item-right>{{ r.pdate }} km</p>
+      </div>
+    </div> -->
+
+  </div>
 </ion-content>

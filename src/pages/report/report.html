@@ -1,0 +1,60 @@
+<ion-header class="kanit">
+  <ion-navbar color="pk-gold">
+    <ion-title>เพิ่มรายงาน</ion-title>
+    <ion-buttons end>
+      <button ion-button color="primary" icon-left (click)="save()" [disabled]="name.errors && (name.dirty || name.touched)">
+        <ion-icon name="create"></ion-icon>
+        SAVE
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="kanit">
+  <ion-item-group>
+    <ion-item-divider color="light">รายละเอียดสถานที่</ion-item-divider>
+    <ion-item>
+      <ion-label stacked>สถานที่</ion-label>
+      <ion-input type="text" [(ngModel)]="parking.pname" id="name" #name="ngModel" placeholder="ชื่อสถานที่" required></ion-input>
+    </ion-item>
+    <div padding class="error-border" *ngIf="name.errors && (name.dirty || name.touched)">กรุณากรอกข้อมูลสถานที่</div>
+    <ion-item>
+      <ion-label stacked>รายละเอียด</ion-label>
+      <ion-textarea [(ngModel)]="parking.pdesc" placeholder="เพิ่มรายละเอียดข้อมูลสถานที่ "></ion-textarea>
+    </ion-item>
+    <p padding>lat: {{parking.lat | number}} lon: {{parking.lon | number}}</p>
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider color="light">รูปสถานที่</ion-item-divider>
+    <ion-card>
+      <ion-item>
+        <ion-avatar item-left>
+          <img src="./assets/imgs/no-person.jpg">
+        </ion-avatar>
+        <h2>Take or Browse Picture</h2>
+        <p>รูปภาพสถานที่</p>
+      </ion-item>
+      <img [src]="parking.photo" *ngIf="parking.photo">
+      <img src="./assets/imgs/no-image.jpg" *ngIf="!parking.photo" padding>
+      <ion-row>
+        <ion-col>
+          <button ion-button clear small icon-left (click)="takePicture()">
+            <ion-icon name="camera"></ion-icon>
+            <div>ถ่ายภาพ</div>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button clear small icon-left (click)="browsePicture()">
+            <ion-icon name="folder-open"></ion-icon>
+            <div>เลือกรูป</div>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button clear small color="danger" icon-left (click)="removePicture()">
+            <ion-icon name="trash"></ion-icon>
+            <div>ลบรูป</div>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-item-group>
+</ion-content>
