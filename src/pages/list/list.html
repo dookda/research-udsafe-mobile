@@ -1,0 +1,25 @@
+<ion-header class="kanit">
+
+  <ion-navbar>
+    <ion-title>list</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="kanit">
+  <ion-list>
+    <button ion-item *ngFor="let r of reports" (click)="viewReportDetail(r)">
+      <ion-thumbnail item-left>
+        <img [src]="r.photo" *ngIf="r.photo">
+        <img src="./assets/imgs/no-image.png" *ngIf="!r.photo">
+      </ion-thumbnail>
+      <h1>{{ r.pname }}</h1>
+      <p ion-text *ngIf="r.pdate">{{ r.pdesc }}</p>
+      <p ion-text *ngIf="r.pdate">lat: {{ r.lat | number}} lon: {{ r.lon | number }}</p>
+      <p ion-text color="primary" item-right>View</p>
+
+      <!-- <p ion-text color="danger" *ngIf="!r.desc">เต็มแล้ว</p> -->
+    </button>
+  </ion-list>
+</ion-content>

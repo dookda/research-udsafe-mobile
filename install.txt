@@ -1,0 +1,7 @@
+npm install leaflet --save
+ionic cordova plugin add cordova-plugin-geolocation --variable GEOLOCATION_USAGE_DESCRIPTION="To locate you"
+npm install --save @ionic-native/geolocation
+npm install --save leaflet.gridlayer.googlemutant
+
+ionic cordova plugin add cordova-plugin-camera
+npm install --save @ionic-native/camera

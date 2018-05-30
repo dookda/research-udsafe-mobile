@@ -1,0 +1,91 @@
+<ion-header id="isnre-font">
+  <ion-navbar>
+    <ion-title>เพิ่มข้อมูล</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding id="isnre-font">
+  <form novalidate [formGroup]="reportForm">
+    <ion-item-group>
+      <ion-item-divider color="light">รายละเอียด</ion-item-divider>
+      <ion-list>
+
+        <ion-item>
+          <ion-label color="primary" stacked>ตำแหน่ง</ion-label>
+          <ion-input type="text" placeholder="lat: {{lat | number}} long: {{lon | number}}" readonly></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="primary" stacked>ชื่อสถานที่</ion-label>
+          <ion-input type="text" formControlName="pname" placeholder="กรอกชื่อสถานที่"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="primary" stacked>ประเภทไฟป่า</ion-label>
+          <ion-select interface="action-sheet" formControlName="ptype">
+            <ion-option value="ป่าอนุรักษ์" selected="true">ป่าอนุรักษ์</ion-option>
+            <ion-option value="ป่าสงวนแห่งชาติ">ป่าสงวนแห่งชาติ</ion-option>
+            <ion-option value="พื้นที่สปก.">พื้นที่สปก.</ion-option>
+            <ion-option value="พื้นที่เกษตร">พื้นที่เกษตร</ion-option>
+            <ion-option value="ริมทาง">ริมทาง</ion-option>
+            <ion-option value="ชุมชนและอื่นๆ">ชุมชนและอื่นๆ</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="primary" stacked>รายละเอียดอื่น ๆ</ion-label>
+          <ion-input type="text" formControlName="pdesc" placeholder="กรอกรายละเอียดเกี่ยวกับสถานที่"></ion-input>
+        </ion-item>
+
+      </ion-list>
+      <!-- <ion-item-group> -->
+
+
+      <ion-item-divider color="light">รูปสถานที่</ion-item-divider>
+      <ion-card>
+        <ion-item>
+          <ion-avatar item-left>
+            <img src="./assets/imgs/no-person.jpg">
+          </ion-avatar>
+          <h2>Take or Browse Picture</h2>
+          <p>รูปภาพสถานที่</p>
+        </ion-item>
+        <img [src]="imageFile" *ngIf="imageFile" />
+        <img src="./assets/imgs/no-image.jpg" *ngIf="!imageFile" padding>
+        <ion-row>
+          <ion-col>
+            <button ion-button clear small icon-left (click)="takePicture()">
+              <ion-icon name="camera"></ion-icon>
+              <div>ถ่ายภาพ</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button clear small icon-left (click)="browsePicture()">
+              <ion-icon name="folder-open"></ion-icon>
+              <div>เลือกรูป</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button clear small color="danger" icon-left (click)="removePicture()">
+              <ion-icon name="trash"></ion-icon>
+              <div>ลบรูป</div>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-item-group>
+  </form>
+  <!-- <ion-card>
+      <img [src]="imageFile" *ngIf="imageFile" />
+    </ion-card>
+    <button ion-button color="danger" round icon-left (click)="takePicture()">
+      <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
+    </button> -->
+  <hr>
+  <button ion-button type="submit" [disabled]="!reportForm.valid" (click)="sendData()">ส่งข้อมูล</button>
+  <button ion-button type="submit" [disabled]="!reportForm.valid" (click)="storeData()">บันทึกข้อมูล</button>
+  <!-- <button ion-button color="light" type="submit" [disabled]="!reportForm.valid" (click)="closeModal()">ล้างข้อมูล</button> -->
+
+  <!-- <button ion-button (click)="closeModal()">แสดงแผนที่</button> -->
+
+</ion-content>

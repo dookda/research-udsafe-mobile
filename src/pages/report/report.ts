@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { HttpClient } from '@angular/common/http';
-import { Geolocation } from '@ionic-native/geolocation';
+import { ReportProvider } from '../../providers/report/report';
 
 @IonicPage()
 @Component({
@@ -25,7 +25,7 @@ export class ReportPage {
     private camera: Camera,
     private http: HttpClient,
     private loadingCtrl: LoadingController,
-    private geolocation: Geolocation
+    private reportProvider: ReportProvider
     // private facebook: FacebookServiceProvider
   ) {
     this.parking = { id: 0, pname: '', available: 1 };
@@ -42,22 +42,24 @@ export class ReportPage {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
-    loading.present();
-    new Promise((resolve, reject) => {
-      this.geolocation.getCurrentPosition().then((res: any) => {
-        this.parking.lat = res.coords.latitude;
-        this.parking.lon = res.coords.longitude;
-        resolve(loading.dismiss());
-      }, (error) => {
-        reject(error);
-      })
-    })
 
-    let watch = this.geolocation.watchPosition();
-    watch.subscribe((res: any) => {
-      this.parking.lat = res.coords.latitude;
-      this.parking.lon = res.coords.longitude;
-    });
+    // loading.present();
+
+    let pos = this.reportProvider.getLocation()
+
+
+    this.parking.lat = pos.lat
+    this.parking.lon = pos.lon
+
+
+    // this.reportProvider.getLocation().then((res) => {
+    //   console.log(res)
+    //   this.parking.lat = res.lat
+    //   this.parking.lon = res.lon
+    //   loading.dismiss();
+    // })
+
+
   }
 
   save() {
@@ -74,34 +76,38 @@ export class ReportPage {
 
     console.log(this.parking)
 
-    this.http.post("http://cgi.uru.ac.th/service/udsafe_mobile_report.php", this.parking)
-      .subscribe(res => {
-        toast.present();
-      }, (err) => {
-        console.log('can not add this data')
-      })
+    // this.http.post("http://cgi.uru.ac.th/service/udsafe_mobile_report.php", this.parking)
+    //   .subscribe(res => {
+    //     toast.present();
+    //   }, (err) => {
+    //     console.log('can not add this data')
+    //   })
+
+    this.reportProvider.postMobileReport(this.parking).then((res) => {
+      toast.present();
+    }, (error) => {
+      console.log(error);
+    })
 
     console.log('save ParkingAddPage');
   }
 
 
   takePicture() {
+
     const options: CameraOptions = {
-      quality: 30,
+      quality: 40,
       destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.PNG,
-      mediaType: this.camera.MediaType.PICTURE,
-      cameraDirection: this.camera.Direction.FRONT,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
     }
 
     this.camera.getPicture(options).then((imageData) => {
-      let base64Image = 'data:image/png;base64,' + imageData;
-      this.parking.photo = base64Image;
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.parking.photo = base64Image
     }, (error) => {
       console.log('Camera error!', error);
     });
-
-    console.log('takePicture ParkingAddPage');
   }
 
   browsePicture() {

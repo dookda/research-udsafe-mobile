@@ -1,57 +1,26 @@
 <ion-header class="kanit">
-
-  <ion-navbar [class.show-background]="showToolbar">
-    <ion-title [hidden]="!showToolbar">รายงานสถานการณ์</ion-title>
+  <ion-navbar transparent>
+    <ion-title>ข้อมูลปัจจุบัน</ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content class="kanit">
+  <div id="map" class="map">
+    <div>
 
-<ion-content class="content kanit" (ionScroll)="onScroll($event)" [class.transition]="transition" [style.background-size]="headerImgSize"
-  [style.background-image]="'url('+ headerImgUrl+ ')'">
-
-  <div class="user-info">
-    <img src="./assets/h.jpg" alt="">
-    <h4>รายงาน</h4>
-    <p>รายงานสถานการณ์ จากเครือข่ายเพื่อนเตือนภัย</p>
-  </div>
-
-  <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
-    </ion-refresher-content>
-  </ion-refresher> -->
-
-
-  <div class="articles">
-
-    <ion-list>
-      <button ion-item *ngFor="let r of reports" (click)="viewReportDetail(r)">
-        <ion-thumbnail item-left>
-          <img [src]="r.photo" *ngIf="r.photo">
-          <img src="./assets/imgs/no-image.png" *ngIf="!r.photo">
-        </ion-thumbnail>
-        <h1>{{ r.pname }}</h1>
-        <p ion-text color="primary" item-right *ngIf="r.pdesc">{{ r.pdate }}</p>
-        <p ion-text *ngIf="r.pdate">{{ r.pdesc }}</p>
-        <p ion-text *ngIf="r.pdate">lat: {{ r.lat | number}} lon: {{ r.lon | number }}</p>
-
-        <!-- <p ion-text color="danger" *ngIf="!r.desc">เต็มแล้ว</p> -->
+      <button ion-fab color="light" id="feb" (click)="showLocation()" style="bottom: 50%">
+        <ion-icon name="locate"></ion-icon>
       </button>
-    </ion-list>
 
-    <!-- <div class="article-item" *ngFor=" let r of reports">
-      <ion-thumbnail item-left>
-        <img [src]="r.photo" *ngIf="r.photo">
-        <img src="./assets/imgs/no-image.png" *ngIf="!r.photo">
-      </ion-thumbnail>
-      <div class="placeholders">
-        <p ion-text item-right>{{ r.pname }}</p>
-        <p ion-text item-right>{{ r.pdesc }}</p>
+      <button ion-fab color="light" id="feb" (click)="selectLayers()" style="bottom: 40%">
+        <ion-icon name="logo-buffer"></ion-icon>
+      </button>
 
-        <p ion-text item-right>lat: {{r.lat}} lon: {{r.lon}}</p>
-        <p ion-text item-right>{{ r.pdate }} km</p>
-      </div>
-    </div> -->
+      <button ion-fab color="light" id="feb" (click)="gotoReport()" style="bottom: 30%">
+        <ion-icon name="create"></ion-icon>
+      </button>
 
+    </div>
   </div>
+
 </ion-content>

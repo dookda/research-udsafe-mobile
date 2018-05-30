@@ -1,0 +1,30 @@
+<ion-header class="kanit">
+
+  <ion-navbar>
+    <ion-title>detail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="kanit">
+  <img [src]="dat.photo" *ngIf="dat.photo">
+  <img src="./assets/imgs/no-image.png" *ngIf="!dat.photo">
+  <div>
+    <ion-icon name="football" item-start large></ion-icon>
+    <h2>{{dat.pname}}</h2>
+    <p>{{dat.ptype}}</p>
+    <p>{{dat.pdesc}}</p>
+  </div>
+
+  <ion-item>
+    <span item-left>{{dat.lat}}, {{dat.lon}}</span>
+    <button ion-button icon-left clear item-end>
+      {{dat.pdate}}
+    </button>
+  </ion-item>
+
+  <div id="map2" class="map2"></div>
+
+
+</ion-content>

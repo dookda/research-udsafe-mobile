@@ -1,26 +1,22 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ModalController, Modal } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as L from 'leaflet';
-import 'leaflet.gridlayer.googlemutant';
-import { Geolocation } from '@ionic-native/geolocation';
-import { ReportPage } from '../report/report';
-import { LayerPage } from '../layer/layer';
-
+// import 'leaflet.gridlayer.googlemutant';
 
 @IonicPage()
 @Component({
-  selector: 'page-map',
-  templateUrl: 'map.html',
+  selector: 'page-detail',
+  templateUrl: 'detail.html',
 })
-export class MapPage {
+export class DetailPage {
 
+  private dat: any;
   public map: L.map;
   public marker: L.marker;
   public pos: number[];
 
   //lyrGroup
   private lyrGroup: any;
-  private lyrBase: any;
 
   //lyrs
   private ud_prov: any;
@@ -40,44 +36,43 @@ export class MapPage {
 
   constructor(
     public navCtrl: NavController,
-    private geolocation: Geolocation,
-    public loadingCtrl: LoadingController,
-    private modalCtrl: ModalController
+    public navParams: NavParams
   ) {
-
+    this.dat = this.navParams.get('data')
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
+    console.log(this.dat);
     this.loadMap();
   }
 
   loadMap() {
-    this.map = L.map('map', {
+    this.map = L.map('map2', {
       center: [18.00, 100.50],
       zoom: 8,
       zoomControl: false,
       attributionControl: false,
     })
 
-    this.roads = L.gridLayer.googleMutant({
-      type: 'roadmap', // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
-      zIndex: 0
-    });
+    this.roads = L.tileLayer('http://{s}.google.com/vt/lyrs=r&x={x}&y={y}&z={z}', {
+      maxZoom: 20,
+      subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    })
 
-    this.satellite = L.gridLayer.googleMutant({
-      type: 'satellite', // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
-      zIndex: 0
-    });
+    this.satellite = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+      maxZoom: 20,
+      subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    })
 
-    this.hybrid = L.gridLayer.googleMutant({
-      type: 'hybrid', // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
-      zIndex: 0
-    });
+    this.hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+      maxZoom: 20,
+      subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    })
 
-    this.terrain = L.gridLayer.googleMutant({
-      type: 'terrain', // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
-      zIndex: 0
-    });
+    this.terrain = L.tileLayer('http://{s}.google.com/vt/lyrs=t&x={x}&y={y}&z={z}', {
+      maxZoom: 20,
+      subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    })
 
     // overlay
     const imageUrl = 'http://rain.tvis.in.th/output/';
@@ -146,26 +141,9 @@ export class MapPage {
       zIndex: 5
     });
 
-
-    // const baseLayers = {
-    //   "แผนที่ถนน": roads,
-    //   "แผนที่ภาพดาวเทียม": satellite,
-    //   "แผนที่ผสม": hybrid,
-    //   "แผนที่ภูมิประเทศ": terrain.addTo(this.map),
-    // };
-
-    // const overlay = {
-    //   "ขอบเขตจังหวัด": this.ud_prov.addTo(this.map),
-    //   "ขอบเขตอำเภอ": this.ud_amp.addTo(this.map),
-    //   "ขอบเขตตำบล": this.ud_tam,
-    //   "ข้อมูลฝนจาก Radar: พิษณุโลก": this.radar_phs.addTo(this.map),
-    //   "ข้อมูลฝนจาก Radar: เชียงราย": this.radar_cri,
-    //   "ข้อมูลฝนจาก Radar: ขอนแก่น": this.radar_kkn,
-    //   "หมู่บ้าน": this.ud_vill,
-    //   "แปลงปลูกทุเรียน": this.longlin_parcel_centroid,
-    //   "สถานีที่มีปริมาณน้ำฝน": this.ud_rain.addTo(this.map),
-    //   "ตำแหน่ง hotspot": this.ud_hp.addTo(this.map)
-    // };
+    this.pos = [this.dat.lat, this.dat.lon];
+    this.map.setView(this.pos, 16);
+    this.marker = L.marker(this.pos, { draggable: false }).addTo(this.map);
 
     this.lyrGroup = {
       lyr: [
@@ -189,57 +167,5 @@ export class MapPage {
     // L.control.layers(baseLayers, overlay, { position: 'topright' }).addTo(this.map);
 
   }
-
-  showLocation() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    loading.present();
-
-    this.geolocation.getCurrentPosition().then((res) => {
-      this.pos = [res.coords.latitude, res.coords.longitude];
-      this.map.setView(this.pos, 16);
-      this.marker = L.marker(this.pos, { draggable: false }).addTo(this.map);
-      loading.dismiss();
-      this.marker.on("dragend", function (e) {
-        this.pos = [e.target._latlng.lat, e.target._latlng.lng];
-      });
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
-
-    let watch = this.geolocation.watchPosition();
-    watch.subscribe((res) => {
-      this.pos = [res.coords.latitude, res.coords.longitude];
-    });
-  }
-
-  gotoReport() {
-    this.navCtrl.push(ReportPage, {
-      pos: this.pos
-    })
-  }
-
-  selectLayers() {
-    const modal: Modal = this.modalCtrl.create(LayerPage, this.lyrGroup);
-    modal.present();
-    modal.onDidDismiss((res) => {
-      this.lyrGroup.lyr = res
-      console.log(res)
-      this.lyrFn(res)
-    });
-  }
-
-  lyrFn(lyrs: any) {
-    for (let i of lyrs) {
-      if (i.isChecked) {
-        this.map.addLayer(i.wms);
-      } else {
-        this.map.removeLayer(i.wms);
-      }
-    }
-  }
-
-
 
 }
