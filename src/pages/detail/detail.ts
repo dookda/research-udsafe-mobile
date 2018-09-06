@@ -10,13 +10,13 @@ import * as L from 'leaflet';
 })
 export class DetailPage {
 
-  private dat: any;
+  public dat: any;
   public map: L.map;
   public marker: L.marker;
   public pos: number[];
 
   //lyrGroup
-  private lyrGroup: any;
+  public lyrGroup: any;
 
   //lyrs
   private ud_prov: any;
@@ -39,6 +39,7 @@ export class DetailPage {
     public navParams: NavParams
   ) {
     this.dat = this.navParams.get('data')
+    // console.log(this.dat)
   }
 
   ionViewWillEnter() {
@@ -159,8 +160,8 @@ export class DetailPage {
         { name: 'จุดเกิดไฟ', lyr: 'ud_hp', wms: this.ud_hp.addTo(this.map), type: 'overlay', 'isChecked': true },
         { name: 'แผนที่ถนน', lyr: 'roads', wms: this.roads, type: 'base', 'isChecked': false },
         { name: 'แผนที่ภาพดาวเทียม', lyr: 'satellite', wms: this.satellite, type: 'base', 'isChecked': false },
-        { name: 'แผนที่ผสม', lyr: 'hybrid', wms: this.hybrid, type: 'base', 'isChecked': false },
-        { name: 'แผนที่ภูมิประเทศ', lyr: 'terrain', wms: this.terrain.addTo(this.map), type: 'base', 'isChecked': true },
+        { name: 'แผนที่ผสม', lyr: 'hybrid', wms: this.hybrid.addTo(this.map), type: 'base', 'isChecked': false },
+        { name: 'แผนที่ภูมิประเทศ', lyr: 'terrain', wms: this.terrain, type: 'base', 'isChecked': true },
       ]
     }
 

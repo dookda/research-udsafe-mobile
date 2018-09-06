@@ -1,0 +1,40 @@
+<ion-content class="login-content" padding>
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col>
+      <img src="./assets/imgs/icon512.png" />
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <div class="login-box">
+    <form [formGroup]="formGroup" (ngSubmit)="doRegister()">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            <ion-item>
+              <ion-input type="text" placeholder="ชื่อ-นามสกุล" [(ngModel)]="fname" formControlName="fname"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="ชื่อเข้าใช้ระบบ" [(ngModel)]="username" formControlName="username"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="password" placeholder="รหัสผ่าน" [(ngModel)]="password" formControlName="password"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="email" placeholder="email" [(ngModel)]="email" formControlName="email"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="เบอร์โทรศัพท์" [(ngModel)]="mobile" formControlName="mobile"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" color="danger" full type="submit" [disabled]="!formGroup.valid">ลงทะเบียน</button>
+        </ion-col>
+      </ion-row>
+    </form>
+
+  </div>
+</ion-content>

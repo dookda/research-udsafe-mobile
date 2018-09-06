@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Geolocation } from '@ionic-native/geolocation';
 
 
 @Injectable()
@@ -15,7 +14,7 @@ export class ReportProvider {
 
   getReportList() {
     return new Promise((resolve, reject) => {
-      this.http.get(this.url + '/udsafe_show_report.php').subscribe((res: any) => {
+      this.http.get(this.url + '/tak_show_report.php').subscribe((res: any) => {
         resolve(res)
       }, (error) => {
         reject(error)
@@ -25,7 +24,7 @@ export class ReportProvider {
 
   postMobileReport(data: any) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.url + '/udsafe_mobile_report.php', data).subscribe((res: any) => {
+      this.http.post(this.url + '/tak_mobile_report.php', data).subscribe((res: any) => {
         resolve(res)
       }, (error) => {
         reject(error)

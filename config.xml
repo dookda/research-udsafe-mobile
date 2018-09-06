@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="th.ac.uru.cgi.udsafe" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>เพื่อนเตือนภัย</name>
-    <description>เพื่อนเตือนภัย เฝ้าระวังภัยธรรมชาติ อุตรดิตถ์</description>
+<widget id="th.ac.uru.cgi.takwildfire" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>haze marker</name>
+    <description>แจ้งปัญหาหมอกควัน จ.ตาก</description>
     <author email="sakda.homhuan@gmail.com" href="http://cgi.uru.ac.th/">sakda.homhuan@gmail.com</author>
     <content src="index.html" />
     <access origin="*" />
@@ -19,6 +19,7 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    <preference name="loadUrlTimeoutValue" value="700000" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />

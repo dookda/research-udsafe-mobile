@@ -7,8 +7,40 @@
 </ion-header>
 
 <ion-content padding class="kanit-light">
-  แอปพลิเคชั่นนี้เป็นส่วนหนึ่งของโครงการวิจัย "การพัฒนาระบบติดตามและเตือนภัยไฟป่าในพื้นที่วนเกษตร จังหวัดอุตรดิตถ์" โดยมีจุดมุ่งหมายเพื่อให้เกิดระบบเตือนภัยไฟป่าสำหรับเจ้าหน้าที่
-  เกษตรกร เพื่อแจ้งเตือนและวางแผนการดำเนินการในพื้นที่ปลูกทุเรียนแบบวนเกษตร
-  <p>http://www.cgi.uru.ac.th/udsafe/</p>
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col>
+      <img src="./assets/imgs/icon512.png" />
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+
+
+
+  <ion-card>
+    <ion-card-content>
+      <img src="./assets/imgs/dpc_logo.png" padding>
+      <p></p>
+      <hr>
+      <p>แอปพลิเคชั่นนี้เป็นส่วนหนึ่งของโครงการวิจัย "การพัฒนาระบบติดตามและเตือนภัยหมอกควัน จังหวัดตาก"
+        โดยสำนักงานป้องกันควบคุมโรคที่
+        2 จังหวัดพิษณุโลก
+        <p>http://103.40.148.133/dpc2center/</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <p></p>
+      <p></p>
+      <p>ผู้เข้าใช้งาน: {{ fname }}</p>
+      <p></p>
+      <p></p>
+      <button ion-button full (click)="logout()">ออกจากระบบ</button>
+      <p></p>
+      <p></p>
+    </ion-card-content>
+  </ion-card>
+
 
 </ion-content>

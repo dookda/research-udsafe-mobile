@@ -5,3 +5,8 @@ npm install --save leaflet.gridlayer.googlemutant
 
 ionic cordova plugin add cordova-plugin-camera
 npm install --save @ionic-native/camera
+
+
+http://119.59.125.191/geoserver/postcode/wms?service=WMS&version=1.1.0&request=GetMap&layers=postcode:postcode_db&styles=&bbox=97.3025054931641,5.53843975067139,105.678321838379,20.5389709472656&width=428&height=768&srs=EPSG:4326&format=application/openlayers
+
+http://119.59.125.191/geoserver/postcode/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=postcode:postcode_db&CQL_FILTER=INTERSECTS(geom%2CPoint(100.193623%2016.746781))&outputFormat=application%2Fjson

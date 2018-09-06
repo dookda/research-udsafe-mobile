@@ -1,5 +1,5 @@
-import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Content, LoadingController } from 'ionic-angular';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ReportProvider } from '../../providers/report/report';
 import { DetailPage } from '../detail/detail';
 
@@ -9,7 +9,7 @@ import { DetailPage } from '../detail/detail';
   templateUrl: 'list.html',
 })
 export class ListPage {
-  private reports: any;
+  public reports: any;
 
   constructor(
     public navCtrl: NavController,
