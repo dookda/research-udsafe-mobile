@@ -4,10 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 //import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-// import { Geolocation } from '@ionic-native/geolocation';
+import { Geolocation } from '@ionic-native/geolocation';
 import { Storage } from '@ionic/storage';
 import { ReportProvider } from '../../providers/report/report';
-import { HomePage } from '../home/home';
 // import { ServiceProvider } from '../../providers/service/service';
 
 @IonicPage()
@@ -38,12 +37,12 @@ export class AddDataPage {
     private camera: Camera,
     public navParams: NavParams,
     private navCtrl: NavController,
-    // private loadingCtrl: LoadingController,
+    private loadingCtrl: LoadingController,
     // private alertCtrl: AlertController,
     public modalCtrl: ModalController,
     public view: ViewController,
     public http: HttpClient,
-    // private geolocation: Geolocation,
+    private geolocation: Geolocation,
     private storage: Storage,
     public reportProvider: ReportProvider,
     private toastCtrl: ToastController
@@ -124,7 +123,6 @@ export class AddDataPage {
       'pname': this.reportForm.controls['pname'].value,
       'pdesc': this.reportForm.controls['pdesc'].value,
       'ptype': this.reportForm.controls['ptype'].value,
-      'photo': this.imageFile,
       'yymmdd': this.yymmdd,
       'ddmmyy': this.ddmmyy,
       'imgfile': this.imageFile,
@@ -154,8 +152,6 @@ export class AddDataPage {
 
     toast.onDidDismiss(() => {
       this.navCtrl.pop();
-      // this.navCtrl.setRoot(this.navCtrl.getActive().component);
-      // this.navCtrl.setRoot(HomePage)
       console.log('Dismissed toast');
     });
 
@@ -167,7 +163,6 @@ export class AddDataPage {
       'pname': this.reportForm.controls['pname'].value,
       'pdesc': this.reportForm.controls['pdesc'].value,
       'ptype': this.reportForm.controls['ptype'].value,
-      'photo': this.imageFile,
       'yymmdd': this.yymmdd,
       'img': this.imageFile
     });

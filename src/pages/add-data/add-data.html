@@ -21,12 +21,14 @@
         </ion-item>
 
         <ion-item>
-          <ion-label color="primary" stacked>ประเภทข้อมูล</ion-label>
+          <ion-label color="primary" stacked>ประเภทไฟป่า</ion-label>
           <ion-select interface="action-sheet" formControlName="ptype">
-            <ion-option value="ไฟป่า" selected="true">ไฟป่า</ion-option>
-            <ion-option value="พื้นที่การเกษตร">พื้นที่การเกษตร</ion-option>
-            <ion-option value="บ่อขยะ">บ่อขยะ</ion-option>
-            <ion-option value="ฝุ่นละอองจากการจราจร">ฝุ่นละอองจากการจราจร</ion-option>
+            <ion-option value="ป่าอนุรักษ์" selected="true">ป่าอนุรักษ์</ion-option>
+            <ion-option value="ป่าสงวนแห่งชาติ">ป่าสงวนแห่งชาติ</ion-option>
+            <ion-option value="พื้นที่สปก.">พื้นที่สปก.</ion-option>
+            <ion-option value="พื้นที่เกษตร">พื้นที่เกษตร</ion-option>
+            <ion-option value="ริมทาง">ริมทาง</ion-option>
+            <ion-option value="ชุมชนและอื่นๆ">ชุมชนและอื่นๆ</ion-option>
           </ion-select>
         </ion-item>
 
@@ -81,7 +83,7 @@
     </button> -->
   <hr>
   <button ion-button type="submit" [disabled]="!reportForm.valid" (click)="sendData()">ส่งข้อมูล</button>
-  <!-- <button ion-button type="submit" [disabled]="!reportForm.valid" (click)="storeData()">บันทึกข้อมูล</button> -->
+  <button ion-button type="submit" [disabled]="!reportForm.valid" (click)="storeData()">บันทึกข้อมูล</button>
   <!-- <button ion-button color="light" type="submit" [disabled]="!reportForm.valid" (click)="closeModal()">ล้างข้อมูล</button> -->
 
   <!-- <button ion-button (click)="closeModal()">แสดงแผนที่</button> -->

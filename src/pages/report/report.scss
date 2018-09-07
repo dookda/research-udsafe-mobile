@@ -1,0 +1,14 @@
+page-report {
+    @font-face {
+        font-family: 'Kanit';
+        src: url('../assets/fonts/Kanit-Regular.ttf') format('ttf');
+        font-weight: normal;
+        font-style: normal;
+      }
+      
+      background-color: #387ef5;
+
+      .kanit {
+        font-family: 'Kanit';
+      }
+}

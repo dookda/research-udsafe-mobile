@@ -1,3 +1,9 @@
+Node version: v8.9.3
+
+Cordova version: 8.0.0
+
+Config.xml file: 
+
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="th.ac.uru.cgi.udsafe" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>เพื่อนเตือนภัย</name>
@@ -89,3 +95,50 @@
     <engine name="browser" spec="5.0.3" />
     <engine name="android" spec="~7.0.0" />
 </widget>
+
+
+Plugins: 
+
+cordova-plugin-camera,cordova-plugin-device,cordova-plugin-geolocation,cordova-plugin-ionic-keyboard,cordova-plugin-ionic-webview,cordova-plugin-splashscreen,cordova-plugin-whitelist,cordova-sqlite-storage
+
+Android platform:
+
+**************************************************************************
+The "android" command is deprecated.
+For manual SDK, AVD, and project management, please use Android Studio.
+For command-line tools, use tools\bin\sdkmanager.bat
+and tools\bin\avdmanager.bat
+**************************************************************************
+
+Invoking "C:\Users\sakda\AppData\Local\Android\sdk\tools\bin\avdmanager" list target
+
+Loading local repository...                                                     [=========                              ] 25% Loading local repository...       [=========                              ] 25% Fetch remote repository...        [=========                              ] 25% Fetch remote repository...        [=========                              ] 25% Fetch remote repository...        [=======================================] 100% Fetch remote repository...       Available Android targets:
+----------
+id: 1 or "android-25"
+     Name: Android API 25
+     Type: Platform
+     API level: 25
+     Revision: 3
+----------
+id: 2 or "android-26"
+     Name: Android API 26
+     Type: Platform
+     API level: 26
+     Revision: 2
+----------
+id: 3 or "android-27"
+     Name: Android API 27
+     Type: Platform
+     API level: 27
+     Revision: 3
+----------
+id: 4 or "android-28"
+     Name: Android API 28
+     Type: Platform
+     API level: 28
+     Revision: 4
+
+
+
+
+
