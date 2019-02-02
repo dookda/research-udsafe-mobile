@@ -69,7 +69,7 @@ export class DetailPage {
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
     })
 
-    this.terrain = L.tileLayer('http://{s}.google.com/vt/lyrs=t&x={x}&y={y}&z={z}', {
+    this.terrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
       maxZoom: 20,
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
     })

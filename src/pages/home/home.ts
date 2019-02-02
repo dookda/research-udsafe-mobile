@@ -79,7 +79,7 @@ export class HomePage {
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
     })
 
-    this.terrain = L.tileLayer('http://{s}.google.com/vt/lyrs=t&x={x}&y={y}&z={z}', {
+    this.terrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
       maxZoom: 20,
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
     })
@@ -163,10 +163,10 @@ export class HomePage {
         { name: 'แปลงปลูกทุเรียน', lyr: 'longlin_parcel_centroid', wms: this.longlin_parcel_centroid, type: 'overlay', 'isChecked': false },
         { name: 'สถานีที่มีฝนตก', lyr: 'ud_rain', wms: this.ud_rain.addTo(this.map), type: 'overlay', 'isChecked': true },
         { name: 'จุดเกิดไฟ', lyr: 'ud_hp', wms: this.ud_hp.addTo(this.map), type: 'overlay', 'isChecked': true },
-        { name: 'แผนที่ถนน', lyr: 'roads', wms: this.roads.addTo(this.map), type: 'base', 'isChecked': false },
+        { name: 'แผนที่ถนน', lyr: 'roads', wms: this.roads.addTo(this.map), type: 'base', 'isChecked': true },
         { name: 'แผนที่ภาพดาวเทียม', lyr: 'satellite', wms: this.satellite, type: 'base', 'isChecked': false },
         { name: 'แผนที่ผสม', lyr: 'hybrid', wms: this.hybrid, type: 'base', 'isChecked': false },
-        { name: 'แผนที่ภูมิประเทศ', lyr: 'terrain', wms: this.terrain, type: 'base', 'isChecked': true },
+        { name: 'แผนที่ภูมิประเทศ', lyr: 'terrain', wms: this.terrain, type: 'base', 'isChecked': false },
       ]
     }
 

@@ -11,7 +11,7 @@ import { ReportProvider } from '../../providers/report/report';
 })
 export class ReportPage {
 
-  private parking: any = null;
+  public parking: any = null;
   private userProfile: any;
   private lat: number;
   private lon: number;
@@ -25,7 +25,7 @@ export class ReportPage {
     private camera: Camera,
     private http: HttpClient,
     private loadingCtrl: LoadingController,
-    private reportProvider: ReportProvider
+    public reportProvider: ReportProvider
     // private facebook: FacebookServiceProvider
   ) {
     this.parking = { id: 0, pname: '', available: 1 };
@@ -48,8 +48,8 @@ export class ReportPage {
     let pos = this.reportProvider.getLocation()
 
 
-    this.parking.lat = pos.lat
-    this.parking.lon = pos.lon
+    this.parking.lat = pos.lat;
+    this.parking.lon = pos.lon;
 
 
     // this.reportProvider.getLocation().then((res) => {
